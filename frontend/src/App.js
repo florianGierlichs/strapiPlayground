@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import Article from "./components/Article";
+const axios = require("axios");
 
 function App() {
+  const [articles, setArticles] = useState();
+
+  useEffect(() => {
+    axios.get("http://localhost:1337/artciles").then(function (response) {
+      const articles = response.data;
+      setArticles(articles);
+    });
+  }, []);
+
+  console.log(articles);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      {articles?.map(({ id, headline, content }) => (
+        <Article key={id} headline={headline} content={content} />
+      ))}
     </div>
   );
 }
