@@ -1,0 +1,19 @@
+{
+  "kind": "collectionType",
+  "collectionName": "artciles",
+  "info": {
+    "name": "artcile"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true
+  },
+  "attributes": {
+    "headline": {
+      "type": "string"
+    },
+    "content": {
+      "type": "richtext"
+    }
+  }
+}
